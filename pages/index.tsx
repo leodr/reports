@@ -128,8 +128,14 @@ export default function Home() {
                             <ReportWeekItem
                                 week={week}
                                 accessToken={token}
-                                id={week.reports[0].id}
-                                key={week.reports[0].id}
+                                id={
+                                    week.reports[0]?.id ??
+                                    week.startOfWeek.toISOString()
+                                }
+                                key={
+                                    week.reports[0]?.id ??
+                                    week.startOfWeek.toISOString()
+                                }
                             />
                         ))}
                     </OpenedAccordionProvider>
