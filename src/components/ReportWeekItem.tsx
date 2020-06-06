@@ -29,7 +29,9 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
     const clipboardRef = useRef<ClipboardJS>();
 
     useEffect(function fetchReports() {
-        fetchMultipleRecords(accessToken, week.reports).then(setReports);
+        fetchMultipleRecords(accessToken, week.reports).then((reports) =>
+            setReports([...reports].reverse())
+        );
     }, []);
 
     useEffect(
@@ -96,9 +98,11 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
                     onClick={toggleExpansion}
                 >
                     <div className="space-y-1">
-                        <span className="text-xs rounded-full px-2 py-1 bg-indigo-200 text-indigo-700 uppercase tracking-wide font-medium -ml-px">
-                            {`${reports?.length} Berichte`}
-                        </span>
+                        {reports && (
+                            <span className="text-xs rounded-full px-2 py-1 bg-indigo-200 text-indigo-700 uppercase tracking-wide font-medium -ml-px">
+                                {`${reports.length} Berichte`}
+                            </span>
+                        )}
                         <h4 className="text-lg font-bold">
                             <time dateTime={mondayOfWeek.toString()}>
                                 {format(mondayOfWeek, 'dd. MMMM', {

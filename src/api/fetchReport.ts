@@ -2,7 +2,7 @@ import { getUserIdFromToken } from '../util/getUserIdFromToken';
 
 interface ReportQuestion {
     text: string;
-    answer: string;
+    answer: string | null;
     imageUrl: string | null;
 }
 
@@ -19,7 +19,7 @@ export async function fetchReport(accessToken: string, id: number) {
 
     const sanitizedReport: Report = report.map((question) => ({
         ...question,
-        answer: question.answer.replace(removeTagsRegex, ''),
+        answer: question.answer?.replace(removeTagsRegex, '') ?? '',
     }));
 
     return sanitizedReport;
