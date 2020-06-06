@@ -29,7 +29,6 @@ export default function Home() {
         fetchReportList({ accessToken: token, startDate, endDate })
             .then((list) => {
                 setHasError(false);
-                console.log(list);
                 setReportList(list);
             })
             .catch(() => setHasError(true));

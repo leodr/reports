@@ -30,8 +30,6 @@ const TokenInputField: React.FC<TokenInputFieldProps> = ({
                     updateDate
                 );
 
-                console.log({ hourDifference });
-
                 if (hourDifference <= 4) {
                     onChange(tokenStore.token);
                 }
