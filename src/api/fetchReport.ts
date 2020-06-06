@@ -1,3 +1,5 @@
+import { getUserIdFromToken } from '../util/getUserIdFromToken';
+
 interface ReportQuestion {
     text: string;
     answer: string;
@@ -7,7 +9,9 @@ interface ReportQuestion {
 export type Report = Array<ReportQuestion>;
 
 export async function fetchReport(accessToken: string, id: number) {
-    const response = await fetch(getReportUrl(id), {
+    const userId = getUserIdFromToken(accessToken);
+
+    const response = await fetch(getReportUrl(id, userId), {
         headers: { Authorization: `Bearer ${accessToken}` },
     });
 
@@ -21,8 +25,8 @@ export async function fetchReport(accessToken: string, id: number) {
     return sanitizedReport;
 }
 
-function getReportUrl(id: number) {
-    return `https://tapp01.tobit.com/Tapps/AbsenceBoard/V2.0/Alibi.Web.API/DailyReport/19/1948208?reportId=${id}`;
+function getReportUrl(id: number, userId: number) {
+    return `https://tapp01.tobit.com/Tapps/AbsenceBoard/V2.0/Alibi.Web.API/DailyReport/19/${userId}?reportId=${id}`;
 }
 
 const removeTagsRegex = /<\/?[a-z ]*>/gi;

@@ -1,7 +1,8 @@
 import { eachWeekOfInterval, isEqual, startOfWeek } from 'date-fns';
+import { getUserIdFromToken } from '../util/getUserIdFromToken';
 
-function getReportListUrl(startDate: Date, endDate: Date) {
-    return `https://tapp01.tobit.com/Tapps/AbsenceBoard/V2.0/Alibi.Web.API/DailyReport/19/1948208?reportIds=true&startTime=${startDate.toISOString()}&endTime=${endDate.toISOString()}`;
+function getReportListUrl(startDate: Date, endDate: Date, userId: number) {
+    return `https://tapp01.tobit.com/Tapps/AbsenceBoard/V2.0/Alibi.Web.API/DailyReport/19/${userId}?reportIds=true&startTime=${startDate.toISOString()}&endTime=${endDate.toISOString()}`;
 }
 
 export interface ReportListEntry {
@@ -29,7 +30,9 @@ export async function fetchReportList({
     startDate,
     endDate,
 }: FetchReportListOptions): Promise<ReportWeek[]> {
-    const response = await fetch(getReportListUrl(startDate, endDate), {
+    const userId = getUserIdFromToken(accessToken);
+
+    const response = await fetch(getReportListUrl(startDate, endDate, userId), {
         headers: { Authorization: `Bearer ${accessToken}` },
     });
 
