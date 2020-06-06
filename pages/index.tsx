@@ -7,6 +7,7 @@ import {
     subWeeks,
     subYears,
 } from 'date-fns';
+import Head from 'next/head';
 import { useState } from 'react';
 import { fetchReportList, ReportWeek } from '../src/api/fetchReportList';
 import DatePicker from '../src/components/DatePicker';
@@ -38,6 +39,9 @@ export default function Home() {
 
     return (
         <>
+            <Head>
+                <title>Wochenberichte erstellen</title>
+            </Head>
             <header className="bg-white border-b border-gray-200 py-6 overflow-hidden">
                 <div className="max-w-3xl px-5 mx-auto">
                     <h1 className="text-4xl font-black leading-tight mt-4">
