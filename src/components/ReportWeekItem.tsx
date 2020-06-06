@@ -29,7 +29,9 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
     const clipboardRef = useRef<ClipboardJS>();
 
     useEffect(function fetchReports() {
-        fetchMultipleRecords(accessToken, week.reports).then(setReports);
+        fetchMultipleRecords(accessToken, week.reports).then((reports) =>
+            setReports([...reports].reverse())
+        );
     }, []);
 
     useEffect(
