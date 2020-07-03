@@ -1,32 +1,32 @@
-import { getUserIdFromToken } from '../util/getUserIdFromToken';
+import { getUserIdFromToken } from "../util/getUserIdFromToken";
 
 interface ReportQuestion {
-    text: string;
-    answer: string | null;
-    imageUrl: string | null;
+  text: string;
+  answer: string | null;
+  imageUrl: string | null;
 }
 
 export type Report = Array<ReportQuestion>;
 
 export async function fetchReport(accessToken: string, id: number) {
-    const userId = getUserIdFromToken(accessToken);
+  const userId = getUserIdFromToken(accessToken);
 
-    const response = await fetch(getReportUrl(id, userId), {
-        headers: { Authorization: `Bearer ${accessToken}` },
-    });
+  const response = await fetch(getReportUrl(id, userId), {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 
-    const report = (await response.json()) as Report;
+  const report = (await response.json()) as Report;
 
-    const sanitizedReport: Report = report.map((question) => ({
-        ...question,
-        answer: question.answer?.replace(removeTagsRegex, '') ?? '',
-    }));
+  const sanitizedReport: Report = report.map((question) => ({
+    ...question,
+    answer: question.answer?.replace(removeTagsRegex, "") ?? "",
+  }));
 
-    return sanitizedReport;
+  return sanitizedReport;
 }
 
 function getReportUrl(id: number, userId: number) {
-    return `https://tapp01.tobit.com/Tapps/AbsenceBoard/V2.0/Alibi.Web.API/DailyReport/19/${userId}?reportId=${id}`;
+  return `https://tapp01.tobit.com/Tapps/AbsenceBoard/V2.0/Alibi.Web.API/DailyReport/19/${userId}?reportId=${id}`;
 }
 
 const removeTagsRegex = /<\/?[a-z ]*>/gi;
