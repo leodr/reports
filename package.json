@@ -1,6 +1,21 @@
 {
   "name": "weekly-reports-tool",
-  "version": "0.1.0",
+  "version": "1.0.4",
+  "description": "A Next.js app to fetch my companies daily employee run-down and compose it into weekly ones for submitting it to the IHK.",
+  "homepage": "https://github.com/leodr/weekly-reports-tool#readme",
+  "bugs": {
+    "url": "https://github.com/leodr/weekly-reports-tool/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leodr/weekly-reports-tool.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Leo Driesch",
+    "email": "leodr.development@gmail.com",
+    "url": "https://leodriesch.com/"
+  },
   "scripts": {
     "build": "next build",
     "dev": "next dev",
@@ -25,5 +40,8 @@
     "prettier-plugin-packagejson": "^2.2.5",
     "tailwindcss": "^1.4.6",
     "typescript": "^3.9.6"
+  },
+  "engines": {
+    "node": ">=10.13"
   }
 }
