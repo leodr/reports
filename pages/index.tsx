@@ -50,12 +50,12 @@ export default function Home() {
             Dieses Tool generiert automatisch Wochenberichte aus Tagesberichten
             von{" "}
             <a
-              href="https://tobit.com"
+              href="https://labs.tobit.com"
               className="text-indigo-700 outline-none focus:underline hover:underline"
               rel="noopener noreferrer"
               target="_blank"
             >
-              tobit.com
+              labs.tobit.com
             </a>
             , welche dann im{" "}
             <a
