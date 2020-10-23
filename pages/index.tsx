@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import {
   addDays,
-  endOfToday,
+  endOfDay,
   startOfWeek,
   subDays,
   subWeeks,
   subYears,
 } from "date-fns";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchReportList, ReportWeek } from "../src/api/fetchReportList";
 import DatePicker from "../src/components/DatePicker";
 import OpenedAccordionProvider from "../src/components/OpenedAccordionProvider";
@@ -20,10 +20,25 @@ export default function Home() {
   const [hasError, setHasError] = useState(false);
   const [reportList, setReportList] = useState<ReportWeek[]>();
 
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const [startDate, setStartDate] = useState(() =>
-    startOfWeek(subWeeks(Date.now(), 2))
+    startOfWeek(subWeeks(now, 8))
   );
-  const [endDate, setEndDate] = useState(() => endOfToday());
+  const [endDate, setEndDate] = useState(() => endOfDay(now));
+
+  useEffect(() => {
+    setStartDate(startOfWeek(subWeeks(Date.now(), 8)));
+    setEndDate(endOfDay(Date.now()));
+  }, []);
 
   function handleRequest() {
     fetchReportList({ accessToken: token, startDate, endDate })
@@ -41,12 +56,12 @@ export default function Home() {
       <Head>
         <title>Wochenberichte erstellen</title>
       </Head>
-      <header className="bg-white border-b border-gray-200 py-6 overflow-hidden">
+      <header className="py-6 overflow-hidden bg-white border-b border-gray-200">
         <div className="max-w-3xl px-5 mx-auto">
-          <h1 className="text-4xl font-black leading-tight mt-4">
-            Wochenberichte erstellen
+          <h1 className="mt-4 text-4xl font-black leading-tight">
+            Wochenberichte Erstellen
           </h1>
-          <p className="my-2">
+          <p className="mt-4 mb-2 text-gray-500">
             Dieses Tool generiert automatisch Wochenberichte aus Tagesberichten
             von{" "}
             <a
@@ -69,32 +84,32 @@ export default function Home() {
             eingereicht werden können.
           </p>
           <div className="space-y-3">
-            <div className="flex flex-col sm:flex-row mt-4 space-y-2 sm:space-y-0 flex-wrap sm:flex-no-wrap sm:space-x-2">
+            <div className="flex flex-col flex-wrap mt-4 space-y-2 sm:flex-row sm:space-y-0 sm:flex-no-wrap sm:space-x-2">
               <div className="flex-1">
-                <h3 className="text-gray-500 uppercase tracking-wide text-sm font-medium">
+                <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
                   Von
                 </h3>
                 <DatePicker
                   value={startDate}
                   onChange={setStartDate}
-                  min={subYears(Date.now(), 1)}
+                  min={subYears(now, 1)}
                   max={subDays(endDate, 1)}
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-gray-500 uppercase tracking-wide text-sm font-medium">
+                <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
                   Bis
                 </h3>
                 <DatePicker
                   value={endDate}
                   onChange={setEndDate}
                   min={addDays(startDate, 1)}
-                  max={endOfToday()}
+                  max={endOfDay(now)}
                 />
               </div>
             </div>
             <div>
-              <h3 className="text-gray-500 uppercase tracking-wide text-sm font-medium">
+              <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
                 tobit.com-accesstoken
               </h3>
               <div className="flex items-stretch space-x-2">
@@ -114,9 +129,9 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <main className="max-w-3xl mx-auto my-4 px-4">
+      <main className="max-w-3xl px-4 mx-auto my-4">
         {reportList && (
-          <h2 className="text-sm uppercase tracking-wide font-medium mb-1 text-gray-600">{`${reportList.length} Wochenberichte erstellt`}</h2>
+          <h2 className="mb-1 text-sm font-medium tracking-wide text-gray-600 uppercase">{`${reportList.length} Wochenberichte erstellt`}</h2>
         )}
         <ul className="space-y-4">
           <OpenedAccordionProvider>

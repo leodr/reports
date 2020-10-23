@@ -58,21 +58,18 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
     [hasCopied, setHasCopied]
   );
 
-  const attachClipboardJS = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (node !== null) {
-        clipboardRef.current = new ClipboardJS(node);
+  const attachClipboardJS = useCallback((node: HTMLDivElement | null) => {
+    if (node !== null) {
+      clipboardRef.current = new ClipboardJS(node);
 
-        clipboardRef.current.on("success", () => {
-          setHasCopied(true);
-          window.getSelection()?.empty();
-        });
-      } else if (clipboardRef.current !== undefined) {
-        clipboardRef.current.destroy();
-      }
-    },
-    [id]
-  );
+      clipboardRef.current.on("success", () => {
+        setHasCopied(true);
+        window.getSelection()?.empty();
+      });
+    } else if (clipboardRef.current !== undefined) {
+      clipboardRef.current.destroy();
+    }
+  }, []);
 
   const mondayOfWeek = setDay(week.startOfWeek, 1);
 
@@ -87,10 +84,11 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
         )}
       >
         <div
-          className="px-4 py-3 cursor-pointer select-none space-y-1 flex justify-between items-center focus:shadow-outline-indigo outline-none rounded-md"
+          className="flex items-center justify-between px-4 py-3 space-y-1 rounded-md outline-none cursor-pointer select-none focus:shadow-outline-indigo"
           tabIndex={0}
           onKeyDown={(event) => {
-            if (event.keyCode === 32 || event.keyCode === 13) {
+            if (event.key === " " || event.key === "Enter") {
+              event.preventDefault();
               toggleExpansion();
             }
           }}
@@ -98,7 +96,7 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
         >
           <div className="space-y-1">
             {reports && (
-              <span className="text-xs rounded-full px-2 py-1 bg-indigo-200 text-indigo-700 uppercase tracking-wide font-medium -ml-px">
+              <span className="px-2 py-1 -ml-px text-xs font-medium tracking-wide text-indigo-700 uppercase bg-indigo-200 rounded-full">
                 {`${reports.length} Berichte`}
               </span>
             )}
@@ -179,7 +177,7 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
               </div>
             </div>
             <div
-              className="p-3 border border-gray-200 border-dashed bg-gray-50 rounded space-y-3"
+              className="p-3 space-y-3 border border-gray-200 border-dashed rounded bg-gray-50"
               id={textId}
               ref={textRef}
             >
