@@ -17,24 +17,27 @@ const TokenInputField: React.FC<TokenInputFieldProps> = ({
   onChange,
   value,
 }) => {
-  useEffect(function loadTokenFromStorage() {
-    try {
-      const storedTokenString = localStorage.getItem(LOCAL_STORAGE_KEY);
+  useEffect(
+    function loadTokenFromStorage() {
+      try {
+        const storedTokenString = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-      if (storedTokenString !== null) {
-        const tokenStore: TokenStore = JSON.parse(storedTokenString);
-        const updateDate = new Date(tokenStore.timestamp);
+        if (storedTokenString !== null) {
+          const tokenStore: TokenStore = JSON.parse(storedTokenString);
+          const updateDate = new Date(tokenStore.timestamp);
 
-        const hourDifference = differenceInHours(Date.now(), updateDate);
+          const hourDifference = differenceInHours(Date.now(), updateDate);
 
-        if (hourDifference <= 4) {
-          onChange(tokenStore.token);
+          if (hourDifference <= 4) {
+            onChange(tokenStore.token);
+          }
         }
+      } catch (e) {
+        console.warn(e);
       }
-    } catch (e) {
-      console.warn(e);
-    }
-  }, []);
+    },
+    [onChange]
+  );
 
   useEffect(
     function storeToken() {
@@ -63,7 +66,7 @@ const TokenInputField: React.FC<TokenInputFieldProps> = ({
   return (
     <input
       type="text"
-      className="px-4 py-3 border rounded border-gray-300 flex-1 focus:shadow-outline-indigo outline-none bg-gray-50"
+      className="flex-1 px-4 py-3 border border-gray-300 rounded outline-none focus:shadow-outline-indigo bg-gray-50"
       placeholder="z.B. eyJhbBciO..."
       value={value}
       onChange={(e) => onChange(e.currentTarget.value)}
