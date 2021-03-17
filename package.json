@@ -1,6 +1,6 @@
 {
   "name": "weekly-reports-tool",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "A Next.js app to fetch my companies daily employee run-down and compose it into weekly ones for submitting it to the IHK.",
   "homepage": "https://github.com/leodr/weekly-reports-tool#readme",
   "bugs": {
