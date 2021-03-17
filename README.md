@@ -1,60 +1,82 @@
-<h1 align="center">Welcome to weekly-reports-tool 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.4-blue.svg?cacheSeconds=2592000" />
-  <img src="https://img.shields.io/badge/node-%3E%3D10.13-blue.svg" />
-  <a href="https://github.com/leodr/weekly-reports-tool#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/leodr/weekly-reports-tool/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/leodr/weekly-reports-tool/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/leodr/weekly-reports-tool" />
-  </a>
-  <a href="https://twitter.com/leodriesch" target="_blank">
-    <img alt="Twitter: leodriesch" src="https://img.shields.io/twitter/follow/leodriesch.svg?style=social" />
-  </a>
+<h1 align="center">weekly-reports-tool</h1>
+
+<p align="center">
+    <strong>Automates converting daily reports from Tobit into weekly ones to submit to the IHK.</strong>
 </p>
 
-> A Next.js app to fetch my companies daily employee run-down and compose it into weekly ones for submitting it to the IHK.
+<p align="center"> 
+    <a href="https://github.com/leodr/weekly-reports-tool/blob/main/LICENSE">
+        <img alt="MIT License" src="https://img.shields.io/github/license/leodr/weekly-reports-tool?color=%23A855F7&labelColor=%2327272A&style=for-the-badge">
+    </a>
+    <a href="https://twitter.com/leodriesch">
+        <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/leodriesch?color=%2338BDF8&labelColor=%2327272A&style=for-the-badge">
+    </a>
+</p>
 
-### 🏠 [Homepage](https://github.com/leodr/weekly-reports-tool#readme)
+<p align="center">
+    <a href="#-screenshots"><b>Screenshots</b></a>
+    <span>  •  </span>
+    <a href="#-development"><b>Development</b></a>
+    <span>  •  </span>
+    <a href="#-contribute"><b>Contribute</b></a>  
+</p>
 
-### ✨ [Demo](https://weekly-reports-tool.now.sh/)
+---
 
-## Prerequisites
+At Tobit Software Laboratories AG we write a daily report each day to summarise
+our progress.
 
-- node >=10.13
+Also, while beeing an apprentice at the IHK, you have to submit a report to them
+each week, summarising what you have done that week.
 
-## Install
+So this tool saves me and my colleagues the tedious work of manually converting
+the daily reports into weekly ones by automating the process.
 
-```sh
-yarn install
-```
+<br>
 
-## Usage
+## ❯ Screenshots
 
-```sh
-yarn run start
-```
+![Screenshot of the website](./assets/screenshot.png)
 
-## Author
+<br>
 
-👤 **Leo Driesch**
+## ❯ Development
 
-- Website: leodriesch.com
-- Twitter: [@leodriesch](https://twitter.com/leodriesch)
-- Github: [@leodr](https://github.com/leodr)
+1. **Requirements**
 
-## 🤝 Contributing
+   You should have an LTS version of [Node.js](https://nodejs.org/en/) installed
+   installed as well as [Yarn Classic](https://classic.yarnpkg.com/en/).
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/leodr/weekly-reports-tool/issues).
+2. **Install the dependencies**
 
-## Show your support
+   Run `yarn install` to install all neccesary packages.
 
-Give a ⭐️ if this project helped you!
+3. **Run the application**
 
-## 📝 License
+   Start the development server by running `yarn dev`.
 
-Copyright © 2020 [Leo Driesch](https://github.com/leodr).<br />
-This project is [MIT](https://github.com/leodr/weekly-reports-tool/blob/master/LICENSE) licensed.
+<br>
+
+## ❯ Contribute
+
+If you think you have any ideas that could benefit the project, feel free to
+create a pull request!
+
+<br>
+
+---
+
+<p align="center">
+    <sub>
+        Project by Leo Driesch, released under <a href="https://github.com/leodr/weekly-reports-tool/blob/main/LICENSE">MIT license</a>.
+    </sub>
+</p>
+<p align="center">
+    <a href="https://twitter.com/leodriesch">
+        <img alt="Leo Driesch on Twitter" src="./assets/twitter.svg">
+    </a>
+    &nbsp;&nbsp;
+    <a href="https://github.com/leodr">
+        <img alt="Leo Driesch on GitHub" src="./assets/github.svg">
+    </a>
+</p>
