@@ -58,10 +58,10 @@ export default function Home() {
       </Head>
       <header className="py-6 overflow-hidden bg-white border-b border-gray-200">
         <div className="max-w-3xl px-5 mx-auto">
-          <h1 className="mt-4 text-4xl font-black leading-tight">
+          <h1 className="mt-8 text-5xl font-black text-gray-800 leading-tight text-center leading-none">
             Wochenberichte Erstellen
           </h1>
-          <p className="mt-4 mb-2 text-gray-500">
+          <p className="mt-8 mb-16 text-gray-500 text-center text-lg">
             Dieses Tool generiert automatisch Wochenberichte aus Tagesberichten
             von{" "}
             <a
@@ -84,7 +84,7 @@ export default function Home() {
             eingereicht werden können.
           </p>
           <div className="space-y-3">
-            <div className="flex flex-col flex-wrap mt-4 space-y-2 sm:flex-row sm:space-y-0 sm:flex-no-wrap sm:space-x-2">
+            <div className="flex flex-col flex-wrap mt-4 space-y-2 sm:flex-row sm:space-y-0 sm:flex-nowrap sm:space-x-2">
               <div className="flex-1">
                 <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
                   Von
@@ -117,7 +117,7 @@ export default function Home() {
                 <button
                   disabled={buttonDisabled}
                   className={clsx(
-                    "px-4 bg-indigo-700 text-white rounded focus:shadow-outline-indigo outline-none hover:bg-indigo-800 transition-colors duration-75",
+                    "px-4 bg-indigo-500 text-white rounded focus:ring outline-none hover:bg-indigo-600 transition-colors duration-75",
                     buttonDisabled && "opacity-50 cursor-not-allowed"
                   )}
                   onClick={handleRequest}
