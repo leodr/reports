@@ -80,11 +80,12 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
       <div
         className={clsx(
           "rounded-md shadow bg-white divide-y divide-gray-200",
-          !isExpanded && "hover:shadow-lg transition-shadow duration-150"
+          !isExpanded &&
+            "hover:shadow-lg focus:shadow-lg transition-shadow duration-150"
         )}
       >
         <div
-          className="flex items-center justify-between px-4 py-3 space-y-1 rounded-md outline-none cursor-pointer select-none focus:shadow-outline-indigo"
+          className="flex items-center justify-between px-4 py-3 space-y-1 rounded-md outline-none cursor-pointer select-none focus:ring"
           tabIndex={0}
           onKeyDown={(event) => {
             if (event.key === " " || event.key === "Enter") {
@@ -136,7 +137,7 @@ const ReportWeekItem: React.FC<ReportWeekItemProps> = ({
               </label>
               <div
                 className={clsx(
-                  "flex items-center space-x-2 select-none cursor-pointer outline-none focus:shadow-outline-indigo",
+                  "flex items-center space-x-2 select-none cursor-pointer outline-none focus:ring",
                   hasCopied ? "text-green-400" : "text-gray-400"
                 )}
                 tabIndex={0}

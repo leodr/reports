@@ -66,7 +66,7 @@ const TokenInputField: React.FC<TokenInputFieldProps> = ({
   return (
     <input
       type="text"
-      className="flex-1 px-4 py-3 border border-gray-300 rounded outline-none focus:shadow-outline-indigo bg-gray-50"
+      className="flex-1 px-4 py-3 border border-gray-300 rounded outline-none focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50"
       placeholder="z.B. eyJhbBciO..."
       value={value}
       onChange={(e) => onChange(e.currentTarget.value)}

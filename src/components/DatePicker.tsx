@@ -16,7 +16,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
   return (
     <input
       type="date"
-      className="block px-4 py-3 border rounded border-gray-300 focus:shadow-outline-indigo outline-none bg-gray-50 appearance-none w-full"
+      className="block px-4 py-3 border rounded border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50 appearance-none w-full"
       value={formatInputDate(value)}
       min={formatInputDate(min)}
       max={formatInputDate(max)}
