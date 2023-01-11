@@ -1,6 +1,8 @@
 import React, {
   createContext,
   Dispatch,
+  FC,
+  ReactNode,
   SetStateAction,
   useCallback,
   useContext,
@@ -35,7 +37,7 @@ export function useExpandedItem(id: number) {
   };
 }
 
-const OpenedAccordionProvider: React.FC = ({ children }) => {
+const OpenedAccordionProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const value = useState<number | null>(null);
 
   return (
